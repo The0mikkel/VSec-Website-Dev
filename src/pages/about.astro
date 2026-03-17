@@ -9,6 +9,17 @@ const founder = allMembers
   .sort((a, b) => a.slug.localeCompare(b.slug))[0];
 const founderAvatarUrl = founder ? resolveAvatar({ discordAvatar: founder.data.discordAvatar, avatar: founder.data.avatar, github: founder.data.github }) : null;
 const founderInitials = founder ? getInitials(founder.data.name) : '';
+
+const moderators = allMembers
+  .filter(m => m.data.roles.some(r => r.toLowerCase() === 'moderator') && !m.data.roles.some(r => r.toLowerCase() === 'administrator'))
+  .sort((a, b) => a.slug.localeCompare(b.slug))
+  .map(m => ({
+    name: m.data.name,
+    handle: m.data.handle,
+    bio: m.data.bio ?? null,
+    avatarUrl: resolveAvatar({ discordAvatar: m.data.discordAvatar, avatar: m.data.avatar, github: m.data.github }),
+    initials: getInitials(m.data.name),
+  }));
 ---
 
 <Layout title="About VSec" description="About the Danish infosec community VSec">
@@ -90,6 +101,35 @@ const founderInitials = founder ? getInitials(founder.data.name) : '';
             Open an issue
           </a>
         </div>
+      </div>
+    </section>
+
+    <!-- Moderators -->
+    <section class="mb-16">
+      <p class="section-label">// Team</p>
+      <h2 class="font-mono font-bold text-xl text-text-primary mb-6">Moderators</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {moderators.map(m => (
+          <div class="card flex flex-col items-center text-center gap-3">
+            <div class="w-16 h-16 rounded-full border border-border bg-bg-elevated flex items-center justify-center overflow-hidden flex-shrink-0">
+              {m.avatarUrl ? (
+                <>
+                  <img src={m.avatarUrl} alt={m.name} width="64" height="64"
+                    class="w-full h-full object-cover"
+                    onerror={"this.style.display='none';this.nextElementSibling.style.removeProperty('display')"} />
+                  <span class="font-mono font-bold text-lg text-accent" style="display:none">{m.initials}</span>
+                </>
+              ) : (
+                <span class="font-mono font-bold text-lg text-accent">{m.initials}</span>
+              )}
+            </div>
+            <div>
+              <p class="font-mono font-semibold text-text-primary text-sm">{m.name}</p>
+              <p class="font-mono text-xs text-text-muted mb-1">@{m.handle}</p>
+              {m.bio && <p class="font-sans text-xs text-text-secondary leading-relaxed">{m.bio}</p>}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
 
