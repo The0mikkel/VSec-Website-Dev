@@ -207,9 +207,11 @@ const stats = [
 
         function buildCard(m) {
           const avatarHtml = m.avatarUrl
-            ? `<img src="${m.avatarUrl}" alt="${m.name}" width="60" height="60" class="mc-avatar"
-                 onerror="this.style.display='none';this.nextSibling.style.display='flex'">
-               <div class="mc-avatar" style="display:none">${m.initials}</div>`
+            ? `<div class="mc-avatar" style="padding:0;overflow:hidden">
+                 <img src="${m.avatarUrl}" alt="${m.name}"
+                      style="width:100%;height:100%;object-fit:cover;display:block"
+                      onerror="this.parentNode.style.padding='';this.parentNode.textContent='${m.initials}'">
+               </div>`
             : `<div class="mc-avatar">${m.initials}</div>`;
 
           const badge = m.verified
