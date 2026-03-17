@@ -3,7 +3,7 @@ export function resolveAvatar(opts: {
   avatar?: string | null | undefined;
   github?: string | null | undefined;
 }): string | null {
-  return opts.discordAvatar ?? opts.avatar ?? (opts.github ? `https://github.com/${opts.github}.png?size=80` : null);
+  return opts.discordAvatar ?? opts.avatar ?? (opts.github ? `/images/avatars/${opts.github}.png` : null);
 }
 
 export function getInitials(name: string): string {
