@@ -80,9 +80,11 @@ const socials = [
     </div>
 
     <!-- Roles -->
-    <div class="flex flex-wrap gap-1.5 mb-2">
-      {roles.map(role => <span class="tag text-[10px] py-0">{role}</span>)}
-    </div>
+    {roles.filter(r => r.toLowerCase() !== 'verified').length > 0 && (
+      <div class="flex flex-wrap gap-1.5 mb-2">
+        {roles.filter(r => r.toLowerCase() !== 'verified').map(role => <span class="tag text-[10px] py-0">{role}</span>)}
+      </div>
+    )}
 
     {bio && (
       <p class="font-sans text-xs text-text-secondary leading-relaxed mb-3 line-clamp-2">{bio}</p>
