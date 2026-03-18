@@ -21,8 +21,8 @@
   Cross-Origin-Resource-Policy: same-origin
 
   # Content Security Policy
-  # - script-src: 'unsafe-inline' required for Astro's anti-FOUC inline script
-  # - style-src: 'unsafe-inline' required for Tailwind + Google Fonts stylesheet
+  # - script-src: external files only (theme-init.js, avatar-fallback.js, members-carousel.js)
+  # - style-src: Google Fonts stylesheet; Tailwind compiles to external CSS
   # - img-src: GitHub avatars and Discord CDN for member/community images
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://avatars.githubusercontent.com https://github.com https://cdn.discordapp.com; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';
 
@@ -45,4 +45,13 @@
   Cache-Control: public, max-age=604800
 
 /icon-512.png
+  Cache-Control: public, max-age=604800
+
+/theme-init.js
+  Cache-Control: public, max-age=604800
+
+/avatar-fallback.js
+  Cache-Control: public, max-age=604800
+
+/members-carousel.js
   Cache-Control: public, max-age=604800
