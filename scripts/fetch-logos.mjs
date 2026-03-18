@@ -1,12 +1,14 @@
 /**
- * Downloads all external logos (communities, learning, about page tech stack)
- * at build time and rewrites the source files to use local paths.
+ * Downloads all external logos (communities, learning) at build time and
+ * writes a URL→local-path manifest. Source files are never modified.
  */
 import fs from 'fs';
 import path from 'path';
 import { readdir, readFile, writeFile, mkdir } from 'fs/promises';
 
 const LOGOS_DIR = 'public/images/logos';
+const MANIFEST_PATH = 'src/data/logo-manifest.json';
+
 await mkdir(LOGOS_DIR, { recursive: true });
 
 function urlToFilename(url) {
@@ -45,59 +47,43 @@ async function downloadLogo(url) {
   }
 }
 
-// Process markdown content files — rewrites logo: field in-place
-async function processContentDir(dir) {
+// Reads all .md files in a directory and collects external logo URL→localPath mappings
+async function collectLogosFromDir(dir, manifest) {
   let files;
   try { files = await readdir(dir); } catch { return; }
 
   for (const file of files) {
     if (!file.endsWith('.md')) continue;
-    const filePath = path.join(dir, file);
-    let content = await readFile(filePath, 'utf8');
+    const content = await readFile(path.join(dir, file), 'utf8');
 
     const match = content.match(/^logo:\s*["']?(https?:\/\/[^\s"'\r\n]+)["']?/m);
     if (!match) continue;
 
     const url = match[1];
+    if (manifest[url]) continue; // already resolved
+
     const localPath = await downloadLogo(url);
     if (localPath && localPath !== url) {
-      content = content.replace(
-        /^(logo:\s*)["']?(https?:\/\/[^\s"'\r\n]+)["']?/m,
-        `$1${localPath}`
-      );
-      await writeFile(filePath, content, 'utf8');
+      manifest[url] = localPath;
     }
   }
 }
 
-// Process about.astro — rewrites logo: 'https://...' entries in-place
-async function processAboutAstro() {
-  const filePath = 'src/pages/about.astro';
-  let content = await readFile(filePath, 'utf8');
-  let changed = false;
-
-  const logoPattern = /logo:\s*'(https?:\/\/[^']+)'/g;
-  const matches = [...content.matchAll(logoPattern)];
-
-  for (const match of matches) {
-    const url = match[1];
-    const localPath = await downloadLogo(url);
-    if (localPath && localPath !== url) {
-      content = content.replace(`logo: '${url}'`, `logo: '${localPath}'`);
-      changed = true;
-    }
-  }
-
-  if (changed) await writeFile(filePath, content, 'utf8');
+// Load existing manifest so cached entries are preserved across runs
+let manifest = {};
+try {
+  manifest = JSON.parse(await readFile(MANIFEST_PATH, 'utf8'));
+} catch {
+  // first run — start fresh
 }
 
 console.log('Fetching community logos...');
-await processContentDir('src/content/communities');
+await collectLogosFromDir('src/content/communities', manifest);
 
 console.log('Fetching learning logos...');
-await processContentDir('src/content/learning');
+await collectLogosFromDir('src/content/learning', manifest);
 
-console.log('Fetching about page logos...');
-await processAboutAstro();
+await mkdir(path.dirname(MANIFEST_PATH), { recursive: true });
+await writeFile(MANIFEST_PATH, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
 
-console.log('Logo fetch complete.');
+console.log(`Logo fetch complete. ${Object.keys(manifest).length} entries in manifest.`);

@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import SearchFilter from '../components/SearchFilter.astro';
+import Icon from '../components/Icon.astro';
+import { resolveLogo } from '../lib/logo';
 
 const all = (await getCollection('communities'))
   .sort((a, b) => (b.data.featured ? 1 : 0) - (a.data.featured ? 1 : 0));
@@ -36,9 +38,7 @@ const sortedGroups = order
         <p class="font-mono text-xs text-text-muted mb-3">communities</p>
         <a href="https://github.com/VSecDK" target="_blank" rel="noopener noreferrer" class="btn-ghost text-sm">
           Suggest a community
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M7 17L17 7M17 7H7M17 7v10"/>
-          </svg>
+          <Icon name="external-link" size={12} />
         </a>
       </div>
     </div>
@@ -64,10 +64,10 @@ const sortedGroups = order
               >
                 <!-- Logo / fallback -->
                 <div class="flex-shrink-0 w-10 h-10 rounded border border-border bg-bg-elevated flex items-center justify-center overflow-hidden">
-                  {c.data.logo ? (
+                  {resolveLogo(c.data.logo) ? (
                     <>
                       <img
-                        src={c.data.logo}
+                        src={resolveLogo(c.data.logo)!}
                         alt={c.data.name}
                         width="24"
                         height="24"

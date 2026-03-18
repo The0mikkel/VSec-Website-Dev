@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import Icon from './Icon.astro';
 const links = [
   { href: '/posts', label: 'Posts' },
   { href: '/learning', label: 'Learning' },
@@ -52,9 +53,7 @@ const current = Astro.url.pathname;
         class="btn-primary text-xs py-2 px-4"
       >
         Discord
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-          <path d="M7 17L17 7M17 7H7M17 7v10"/>
-        </svg>
+        <Icon name="external-link" size={12} />
       </a>
 
       <!-- Hamburger (mobile) -->
@@ -100,30 +99,29 @@ const current = Astro.url.pathname;
   </div>
 </header>
 
-<script is:inline>
-  const toggle = document.getElementById('nav-toggle');
+<script>
+  const toggle = document.getElementById('nav-toggle') as HTMLButtonElement | null;
   const mobile = document.getElementById('nav-mobile');
   if (!toggle || !mobile) throw new Error('Nav elements not found');
-  const bars = toggle.querySelectorAll('.hamburger-bar');
+  const bars = Array.from(toggle.querySelectorAll<HTMLElement>('.hamburger-bar'));
 
   function closeMenu() {
-    mobile.classList.add('hidden');
+    mobile!.classList.add('hidden');
     bars.forEach(b => b.style.cssText = '');
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Open menu');
+    toggle!.setAttribute('aria-expanded', 'false');
+    toggle!.setAttribute('aria-label', 'Open menu');
   }
 
   toggle.addEventListener('click', () => {
-    const open = mobile.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    const open = mobile!.classList.toggle('hidden') === false;
+    toggle!.setAttribute('aria-expanded', String(open));
+    toggle!.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 
     if (open) {
       bars[0].style.cssText = 'transform:translateY(8px) rotate(45deg)';
       bars[1].style.cssText = 'opacity:0';
       bars[2].style.cssText = 'transform:translateY(-8px) rotate(-45deg)';
-      // Move focus to first menu item
-      const firstLink = mobile.querySelector('a');
+      const firstLink = mobile!.querySelector('a');
       if (firstLink) firstLink.focus();
     } else {
       bars[0].style.cssText = '';
@@ -133,10 +131,10 @@ const current = Astro.url.pathname;
   });
 
   // Close on Escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle!.getAttribute('aria-expanded') === 'true') {
       closeMenu();
-      toggle.focus();
+      toggle!.focus();
     }
   });
 
