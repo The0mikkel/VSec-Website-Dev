@@ -52,41 +52,4 @@
   </button>
 </div>
 
-<script is:inline>
-  function getStoredTheme() {
-    try { return localStorage.getItem('vsec-theme') ?? 'system'; } catch { return 'system'; }
-  }
-
-  function applyTheme(theme) {
-    const html = document.documentElement;
-    const resolved = theme === 'system'
-      ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-      : theme;
-    html.setAttribute('data-theme', resolved);
-
-    document.querySelectorAll('[data-theme-btn]').forEach(btn => {
-      const active = btn.dataset.themeBtn === theme;
-      btn.classList.toggle('text-accent', active);
-      btn.classList.toggle('bg-accent/10', active);
-      btn.classList.toggle('text-text-muted', !active);
-      btn.setAttribute('aria-pressed', String(active));
-    });
-  }
-
-  // Apply stored theme
-  applyTheme(getStoredTheme());
-
-  // Click handlers
-  document.querySelectorAll('[data-theme-btn]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const theme = btn.dataset.themeBtn;
-      try { localStorage.setItem('vsec-theme', theme); } catch {}
-      applyTheme(theme);
-    });
-  });
-
-  // Listen for system preference changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    if (getStoredTheme() === 'system') applyTheme('system');
-  });
-</script>
+<script is:inline src="/theme-toggle.js" defer></script>

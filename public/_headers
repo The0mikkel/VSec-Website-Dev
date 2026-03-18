@@ -50,6 +50,9 @@
 /theme-init.js
   Cache-Control: public, max-age=604800
 
+/theme-toggle.js
+  Cache-Control: public, max-age=604800
+
 /avatar-fallback.js
   Cache-Control: public, max-age=604800
 
