@@ -1,9 +1,9 @@
 ---
 name: Security Now
-description: Langvarig ugentlig podcast med Steve Gibson og Leo Laporte der går i dybden med tekniske sikkerhedsemner — kryptering, protokoller, sårbarheder og aktuelle angreb.
+description: Long-running weekly podcast with Steve Gibson and Leo Laporte going deep on technical security topics — encryption, protocols, vulnerabilities and current attacks.
 link: https://twit.tv/shows/security-now
 logo: /images/logos/twit.tv.ico
-tags: [podcast, ugentlig, teknisk, kryptering, gratis]
+tags: [podcast, weekly, technical, encryption, free]
 category: Security Podcasts
 featured: false
 ---

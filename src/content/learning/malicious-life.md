@@ -1,9 +1,9 @@
 ---
 name: Malicious Life
-description: Podcast fra Cybereason der fortæller de sande historier bag store cyberangreb og sikkerhedshændelser. Dybtgående research og velfortalt narrativ om APT-grupper og cyberkriminalitet.
+description: Podcast from Cybereason telling the true stories behind major cyberattacks and security incidents. In-depth research and well-crafted narrative about APT groups and cybercrime.
 link: https://malicious.life
 logo: /images/logos/malicious.life.ico
-tags: [podcast, storytelling, apt, cyberkriminalitet, gratis]
+tags: [podcast, storytelling, apt, cybercrime, free]
 category: Security Podcasts
 featured: false
 ---

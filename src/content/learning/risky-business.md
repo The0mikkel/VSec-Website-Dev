@@ -1,9 +1,9 @@
 ---
 name: Risky Business
-description: Ugentlig podcast med Patrick Gray der interviewer de mest indflydelsesrige stemmer i sikkerhedsindustrien. Fokus på aktuelle hændelser, politik og trends i cybersikkerhed.
+description: Weekly podcast with Patrick Gray interviewing the most influential voices in the security industry. Focus on current events, policy and trends in cybersecurity.
 link: https://risky.biz
 logo: /images/logos/risky.biz.ico
-tags: [podcast, ugentlig, industri, nyheder, gratis]
+tags: [podcast, weekly, industry, news, free]
 category: Security Podcasts
 featured: false
 ---
