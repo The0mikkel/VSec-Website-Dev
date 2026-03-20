@@ -45,10 +45,10 @@ const years = Object.keys(grouped).map(Number).sort((a, b) => b - a);
   <div class="max-w-5xl mx-auto px-6 py-16">
 
     <!-- Page header -->
-    <div class="flex items-start justify-between gap-8 mb-12">
+    <div class="flex flex-col sm:flex-row items-start justify-between gap-4 sm:gap-8 mb-12">
       <div>
         <p class="section-label">// CTI League</p>
-        <h1 class="font-mono font-bold text-4xl text-text-primary mb-2">Incidents</h1>
+        <h1 class="font-mono font-bold text-2xl sm:text-3xl md:text-4xl text-text-primary mb-2">Incidents</h1>
         <p class="font-sans text-text-secondary max-w-lg leading-relaxed">
           Curated Danish cybersecurity incidents, sorted by year and month.
         </p>
@@ -85,7 +85,7 @@ const years = Object.keys(grouped).map(Number).sort((a, b) => b - a);
             <section data-search-section>
               <!-- Year heading -->
               <div class="flex items-center gap-4 mb-8">
-                <h2 class="font-mono font-bold text-5xl text-accent/15 leading-none select-none">{year}</h2>
+                <h2 class="font-mono font-bold text-3xl sm:text-5xl text-accent/15 leading-none select-none">{year}</h2>
                 <div class="flex-1 h-px bg-border"></div>
                 <span class="font-mono text-xs text-text-muted">
                   {Object.values(grouped[year]).flat().length} incident{Object.values(grouped[year]).flat().length !== 1 ? 's' : ''}

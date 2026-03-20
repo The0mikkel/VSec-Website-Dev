@@ -23,10 +23,10 @@ const letters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'da'));
   <div class="max-w-6xl mx-auto px-6 py-16">
 
     <!-- Header -->
-    <div class="flex items-start justify-between gap-8 mb-12">
+    <div class="flex flex-col sm:flex-row items-start justify-between gap-4 sm:gap-8 mb-12">
       <div>
         <p class="section-label">// Community</p>
-        <h1 class="font-mono font-bold text-4xl text-text-primary mb-2">Members</h1>
+        <h1 class="font-mono font-bold text-2xl sm:text-3xl md:text-4xl text-text-primary mb-2">Members</h1>
         <p class="font-sans text-text-secondary max-w-lg leading-relaxed">
           Verified members of the VSec community.
           Verification is done via our Discord bot, which links your Discord profile to your VSec identity.
@@ -81,7 +81,7 @@ const letters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'da'));
       {letters.map(letter => (
         <section id={`letter-${letter}`}>
           <div class="flex items-center gap-4 mb-5">
-            <span class="font-mono font-bold text-4xl text-accent/20 leading-none select-none">{letter}</span>
+            <span class="font-mono font-bold text-2xl sm:text-4xl text-accent/20 leading-none select-none">{letter}</span>
             <div class="flex-1 h-px bg-border"></div>
             <span class="font-mono text-xs text-text-muted">{grouped[letter].length}</span>
           </div>
