@@ -1,7 +1,7 @@
 ---
 name: Asbjørn Hoffskov Lund
 handle: ahoffskov
-bio: "IT Security Consultant / CISO-as-a-Service @ Unitas ApS"
+bio: "Governance & Security Advisor @ A. Hoffskov Consult / Arkimentum"
 roles: ["Verified"]
 verified: true
 featured: false
