@@ -1,7 +1,7 @@
 ---
 name: Anders Strøm Møller
 handle: DanishDude
-bio: "Network Specialist @ Bang & Olufsen"
+bio: "Network & Security Architect @ NetSec.dk"
 roles: ["Verified"]
 verified: true
 featured: false
