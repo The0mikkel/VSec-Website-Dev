@@ -225,25 +225,36 @@ const moderators = allMembers
 
         <section>
           <h3 class="font-mono font-semibold text-text-primary mb-3">Our pledge</h3>
+          <p class="mb-3">
+            We pledge to make our community welcoming, safe, and equitable for all.
+          </p>
           <p>
-            We as members, contributors, and leaders pledge to make participation in our community
-            a harassment-free experience for everyone — regardless of age, body size, visible or invisible
-            disability, ethnicity, sex characteristics, gender identity and expression, level of experience,
-            education, socioeconomic status, nationality, personal appearance, race, caste, color,
-            religion, or sexual identity and orientation.
+            We are committed to fostering an environment that respects and promotes the dignity, rights,
+            and contributions of all individuals, regardless of characteristics including race, ethnicity,
+            caste, color, age, physical characteristics, neurodiversity, disability, sex or gender,
+            gender identity or expression, sexual orientation, language, philosophy or religion,
+            national or social origin, socio-economic position, level of education, or other status.
+            The same privileges of participation are extended to everyone who participates in good faith
+            and in accordance with this Covenant.
           </p>
         </section>
 
         <section>
-          <h3 class="font-mono font-semibold text-text-primary mb-3">Our standards</h3>
-          <p class="mb-4">Examples of behavior that contributes to a positive environment:</p>
-          <ul class="space-y-2 list-none mb-6">
+          <h3 class="font-mono font-semibold text-text-primary mb-3">Encouraged behaviors</h3>
+          <p class="mb-4">
+            While acknowledging differences in social norms, we all strive to meet our community's
+            expectations for positive behavior. We agree to behave mindfully toward each other and
+            act in ways that center our shared values, including:
+          </p>
+          <ul class="space-y-2 list-none">
             {[
-              'Demonstrating empathy and kindness toward other people',
-              'Being respectful of differing opinions, viewpoints, and experiences',
-              'Giving and gracefully accepting constructive feedback',
-              'Accepting responsibility and apologizing to those affected by our mistakes',
-              'Focusing on what is best for the overall community',
+              'Respecting the purpose of our community, our activities, and our ways of gathering.',
+              'Engaging kindly and honestly with others.',
+              'Respecting different viewpoints and experiences.',
+              'Taking responsibility for our actions and contributions.',
+              'Gracefully giving and accepting constructive feedback.',
+              'Committing to repairing harm when it occurs.',
+              'Behaving in other ways that promote and sustain the well-being of our community.',
             ].map(item => (
               <li class="flex items-start gap-3">
                 <span class="font-mono text-accent mt-0.5 flex-shrink-0">+</span>
@@ -251,14 +262,37 @@ const moderators = allMembers
               </li>
             ))}
           </ul>
-          <p class="mb-4">Examples of unacceptable behavior:</p>
+        </section>
+
+        <section>
+          <h3 class="font-mono font-semibold text-text-primary mb-3">Restricted behaviors</h3>
+          <p class="mb-4">
+            We agree to restrict the following behaviors in our community. Instances, threats, and
+            promotion of these behaviors are violations of this Code of Conduct.
+          </p>
+          <ul class="space-y-2 list-none mb-6">
+            {[
+              'Harassment. Violating explicitly expressed boundaries or engaging in unnecessary personal attention after any clear request to stop.',
+              'Character attacks. Making insulting, demeaning, or pejorative comments directed at a community member or group of people.',
+              'Stereotyping or discrimination. Characterizing anyone\'s personality or behavior on the basis of immutable identities or traits.',
+              'Sexualization. Behaving in a way that would generally be considered inappropriately intimate in the context or purpose of the community.',
+              'Violating confidentiality. Sharing or acting on someone\'s personal or private information without their permission.',
+              'Endangerment. Causing, encouraging, or threatening violence or other harm toward any person or group.',
+              'Behaving in other ways that threaten the well-being of our community.',
+            ].map(item => (
+              <li class="flex items-start gap-3">
+                <span class="font-mono text-red-400/70 mt-0.5 flex-shrink-0">–</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mb-4 text-sm text-text-muted font-mono uppercase tracking-widest">Other restrictions</p>
           <ul class="space-y-2 list-none">
             {[
-              'The use of sexualized language or imagery, and sexual attention or advances of any kind',
-              'Trolling, insulting or derogatory comments, and personal or political attacks',
-              'Public or private harassment',
-              'Publishing others\' private information without their explicit permission',
-              'Other conduct which could reasonably be considered inappropriate in a professional setting',
+              'Misleading identity. Impersonating someone else for any reason, or pretending to be someone else to evade enforcement actions.',
+              'Failing to credit sources. Not properly crediting the sources of content you contribute.',
+              'Promotional materials. Sharing marketing or other commercial content in a way that is outside the norms of the community.',
+              'Irresponsible communication. Failing to responsibly present content which includes, links or describes any other restricted behaviors.',
             ].map(item => (
               <li class="flex items-start gap-3">
                 <span class="font-mono text-red-400/70 mt-0.5 flex-shrink-0">–</span>
@@ -269,19 +303,64 @@ const moderators = allMembers
         </section>
 
         <section>
-          <h3 class="font-mono font-semibold text-text-primary mb-3">Enforcement</h3>
+          <h3 class="font-mono font-semibold text-text-primary mb-3">Reporting an issue</h3>
+          <p class="mb-3">
+            Not every conflict represents a code of conduct violation. When an incident does occur,
+            it is important to report it promptly. To report a possible violation, reach out to the
+            community moderators via Discord. All reports will be reviewed and investigated promptly,
+            with moderators keeping actions as transparent as possible while prioritizing safety
+            and confidentiality.
+          </p>
+        </section>
+
+        <section>
+          <h3 class="font-mono font-semibold text-text-primary mb-3">Addressing and repairing harm</h3>
+          <p class="mb-5">
+            If a violation is found, the following enforcement ladder may be used to determine how
+            best to repair harm, based on severity and impact. Lower rungs may be skipped depending
+            on the situation.
+          </p>
+          <div class="space-y-4">
+            {[
+              { level: '01', title: 'Warning', desc: 'A private, written warning from the moderators for a single incident or series of incidents.' },
+              { level: '02', title: 'Temporarily limited activities', desc: 'A time-limited cooldown period for a repeated violation or first incidence of a more serious violation.' },
+              { level: '03', title: 'Temporary suspension', desc: 'A suspension with conditions for return, for a pattern of repeated violations or a single serious violation.' },
+              { level: '04', title: 'Permanent ban', desc: 'Removal from all community spaces for patterns of violation that other steps have failed to resolve, or a violation of extreme severity.' },
+            ].map(step => (
+              <div class="flex gap-4 items-start">
+                <span class="font-mono text-xs text-accent/40 mt-0.5 flex-shrink-0 w-6">{step.level}</span>
+                <div>
+                  <p class="font-mono text-sm text-text-primary mb-1">{step.title}</p>
+                  <p class="text-sm">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h3 class="font-mono font-semibold text-text-primary mb-3">Scope</h3>
           <p>
-            Instances of abusive, harassing, or otherwise unacceptable behavior may be
-            reported to the community leaders via Discord. All complaints will be reviewed and
-            investigated promptly and fairly.
+            This Code of Conduct applies within all community spaces, and also applies when an
+            individual is officially representing the community in public or other spaces — such as
+            using an official email address, posting via an official social media account, or acting
+            as an appointed representative at an online or offline event.
           </p>
         </section>
 
         <section class="pt-4 border-t border-border">
           <p class="font-mono text-xs text-text-muted">
-            This code of conduct is inspired by{' '}
-            <a href="https://www.contributor-covenant.org" target="_blank" rel="noopener noreferrer" class="text-accent/70 hover:text-accent transition-colors">
-              Contributor Covenant v2.1
+            This code of conduct is adapted from the{' '}
+            <a href="https://www.contributor-covenant.org/version/3/0/code_of_conduct/" target="_blank" rel="noopener noreferrer" class="text-accent/70 hover:text-accent transition-colors">
+              Contributor Covenant v3.0
+            </a>
+            , stewarded by the{' '}
+            <a href="https://ethicalsource.dev" target="_blank" rel="noopener noreferrer" class="text-accent/70 hover:text-accent transition-colors">
+              Organization for Ethical Source
+            </a>
+            {' '}and licensed under{' '}
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" class="text-accent/70 hover:text-accent transition-colors">
+              CC BY-SA 4.0
             </a>.
           </p>
         </section>
