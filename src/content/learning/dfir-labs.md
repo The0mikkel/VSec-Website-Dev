@@ -1,8 +1,8 @@
 ---
-name: DFIR Labs
-description: Hands-on digital forensics and incident response labs covering memory analysis, disk forensics, network forensics, and malware triage.
+name: The DFIR Report
+description: In-depth threat intelligence reports and real-world incident response case studies covering malware, ransomware, and adversary techniques.
 link: https://thedfirreport.com/
-tags: [dfir, forensics, incident-response, malware, blue-team]
-category: Labs & Practice
+tags: [dfir, forensics, incident-response, malware, blue-team, threat-intel]
+category: Videos & Blogs
 featured: false
 ---
